@@ -14,7 +14,7 @@ Esta API RESTful permite gestionar un inventario de productos de supermercado. S
 
 ---
 
-## Conexion a la base de datos
+## 🔌 Conexion a la base de datos
 
 Nuestro **server.js** se conecta a una base de datos MongoDB utilizando un modulo externo llamado **mongodb.js**, este archivo exporta dos funciones que son:
 
@@ -48,7 +48,10 @@ __URL:__ http://localhost:3008
 
 ---
 
-### 📦 GET `/productos`
+### 📦 Obtener todos los productos
+
+**GET** `/productos`
+
 __Descripción:__ Devuelve todos los productos del inventario.
 
 #### Ejemplo
@@ -72,7 +75,9 @@ __URL:__ http://localhost:3008/productos
 
 ---
 
-### 🔍 GET `/productos/codigo/:codigo`
+### 🔍 Obtener el producto por codigo
+
+**GET** `/productos/codigo/:codigo`
 
 __Descripción:__ Devuelve un producto según su código.
 
@@ -284,7 +289,9 @@ if (!nuevoProducto.nombre || !nuevoProducto.nombre.trim() || typeof nuevoProduct
   
 ---
 
-### 🛠️ PUT `/productos/codigo/:codigo`
+### 🛠️ Modificar un producto
+
+**PUT** `/productos/codigo/:codigo`
 
 __Descripción:__ Actualiza los datos de un producto según su código.
 
