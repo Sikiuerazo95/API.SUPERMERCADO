@@ -141,18 +141,7 @@ __URL:__ http://localhost:3008/productos/categoria/:categoria
   
 ### Parametros:
 
-* `:categoria`: es un string de busqueda extacta.
-  
-  Limpieza.
-  Infusiones.
-  Comestible.
-  Panadería.
-  Frutas.
-  Especias.
-  Lácteos.
-  Higiene personal.
-  Bebidas.
-  Electrodomésticos.
+* `:categoria`: es un string de busqueda extacta **(limpieza, infusiones, comestible, panadería, frutas, especias, lácteos, higiene personal, bebidas, electrodomésticos)**.
 
 ### Respuesta:
 
