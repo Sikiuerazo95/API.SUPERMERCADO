@@ -66,8 +66,7 @@ __URL:__ http://localhost:3008/productos
     "nombre": "Arroz",
     "precio": 5.99,
     "categoria": "Comestible"
-  },
-  ...
+  }
 ]
 ```
 
@@ -144,16 +143,16 @@ __URL:__ http://localhost:3008/productos/categoria/:categoria
 
 * `:categoria`: es un string de busqueda extacta.
   
-* Limpieza.
-* Infusiones.
-* Comestible.
-* Panadería.
-* Frutas.
-* Especias.
-* Lácteos.
-* Higiene personal.
-* Bebidas.
-* Electrodomésticos.
+  Limpieza.
+  Infusiones.
+  Comestible.
+  Panadería.
+  Frutas.
+  Especias.
+  Lácteos.
+  Higiene personal.
+  Bebidas.
+  Electrodomésticos.
 
 ### Respuesta:
 
@@ -180,9 +179,6 @@ flowchart TD
   K --> L
   L --> Z[Fin]
 ```
-
-![Diagrama de flujo](./imagen/mermaid-diagram-2025-06-11-161454.png)
-
 
 #### Ejemplo de respuesta:
 
