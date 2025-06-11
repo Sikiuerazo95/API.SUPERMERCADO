@@ -14,6 +14,15 @@ Esta API RESTful permite gestionar un inventario de productos de supermercado. S
 
 ---
 
+## 🌱 Configuracion de entorno
+
+Creamos un archivo **.env** en la raiz del proyecto, con las siguientes variables para que la aplicacion pueda funcionar correctamente.
+
+* PORT
+* MONGODB_URI
+  
+---
+
 ## 🔌 Conexion a la base de datos
 
 Nuestro **server.js** se conecta a una base de datos MongoDB utilizando un modulo externo llamado **mongodb.js**, este archivo exporta dos funciones que son:
