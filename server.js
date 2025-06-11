@@ -101,9 +101,13 @@ app.get("/productos/categoria/:categoria", async (req, res) => {
 app.post("/productos", async (req, res) => {
     const nuevoProducto = req.body; // Obtenemos los datos del cuerpo de la solicitud
     if (!nuevoProducto || Object.keys(nuevoProducto).length === 0){
-       return res.status(400).send("Error en el formato de datos recibidos."); // Si no hay datos, respondemos con un error 400 
+       return res.status(400).json({ error: "El formato de datos recibidos esta vacio"}); // Si no hay datos, respondemos con un error 400 
     }
-     
+    
+    if (!nuevoProducto.nombre || !nuevoProducto.nombre.trim() || typeof nuevoProducto.precio !== "number" || isNaN(nuevoProducto.precio) || !nuevoProducto.categoria || !nuevoProducto.categoria.trim()) {
+       return res.status(400).json({ error: "Se necesitan los campos nombre (texto), precio (número) y categoría (texto)"});
+    }
+
     try{
         client = await connectToMongoDB();
         if (!client) {
@@ -200,6 +204,33 @@ app.put("/productos/codigo/:codigo", async (req, res) => {
 
         await disconnectFromMongoDB(); // Cierra la conexión a MongoDB
         
+    }
+});
+
+// Eliminar un producto a partir del DELETE 
+app.delete("/productos/codigo/:codigo", async(req, res)=>{
+    const codigo = parseInt(req.params.codigo);
+    if (isNaN(codigo)) {
+        return res.status(400).json ({error: "El código debe ser un número válido"})
+    }
+    const client = await connectToMongoDB();
+    if (!client){
+        return res.status(500).json ({error:"error al conectarse a MongoDB"});
+    }
+    const inventario = client.db("supermercado").collection("supermercado");
+    
+    try{
+        const resultado = await inventario.deleteOne({codigo});
+        if (resultado.deletedCount === 0){
+            return res.status(404).json({mensaje: "Producto no encontrado"});
+        }
+        console.log(`Producto con codigo ${codigo} eliminado`);
+        res.status(200).json({mensaje:"Producto eliminado correctamente"});
+    } catch(error) {
+        console.error("Error al eliminar el producto:", error);
+        res.status(500).json({error: "Ocurrió un error interno en el servidor"});
+    } finally {
+        await disconnectFromMongoDB();
     }
 });
 
