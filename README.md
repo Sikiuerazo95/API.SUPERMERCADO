@@ -476,3 +476,7 @@ Código HTTP: 500
 | DELETE | /prodcutos/codigo/:codigo        | Error interno del servidor           | 500         | `{"error": "ocurrió un error interno en el servidor"}`              |            
 ---
 
+# Integrantes:
+###### 👩‍💻 __Erazo Leon, Yessica Sikiu__
+###### 👩‍💻 __Spañol, María Florencia__
+###### 👩‍💻 __Santamaria, Araceli__
