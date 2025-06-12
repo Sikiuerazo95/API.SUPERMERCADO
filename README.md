@@ -455,7 +455,7 @@ Código HTTP: 500
 
 ### Respuestas con errores
 
-| Método | Ruta                             | Caso de error                        | Código HTTP Respuesta                                                       |
+| Método | Ruta                             | Caso de error                        | Código HTTP | Respuesta                                                       |
 | ------ | -------------------------------- | ------------------------------------ | ----------- | --------------------------------------------------------------- |
 | GET    | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{ "error": "El código debe ser un número válido" }`            |
 | GET    | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `{ "message": "Producto no encontrado" }`                       |
