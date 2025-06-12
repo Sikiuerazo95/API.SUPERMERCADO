@@ -105,7 +105,7 @@ app.post("/productos", async (req, res) => {
     }
     
     if (!nuevoProducto.nombre || !nuevoProducto.nombre.trim() || typeof nuevoProducto.precio !== "number" || isNaN(nuevoProducto.precio) || !nuevoProducto.categoria || !nuevoProducto.categoria.trim()) {
-       return res.status(400).json({ error: "Se necesitan los campos nombre (texto), precio (número) y categoría (texto)"});
+       return res.status(400).json({ error: "Se necesitan los campos nombre, precio y categoria"});
     }
 
     try{

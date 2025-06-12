@@ -440,32 +440,39 @@ Código HTTP: 500
 
 
 ## Tabla de resumen de respuestas:
-### Respuestas exitosas
+### ✅ Respuestas exitosas
 
-| Método | Ruta                             | Descripción                        | Código HTTP | Ejemplo de respuesta               |
-| ------ | -------------------------------- | ---------------------------------- | ----------- | ---------------------------------- |
-| GET    | /productos                       | Lista todos los productos          | 200         | Array de productos JSON            |
-| GET    | /productos/codigo/:codigo        | Devuelve un producto por su código | 200         | Objeto JSON del producto           |
-| PUT    | /productos/codigo/:codigo        | Actualiza un producto existente    | 200         | Objeto JSON con datos actualizados |
-| DELETE | /productos/codigo/:codigo        | Elimina un producto por código     | 200         | { "mensjae": "producto eliminado   |
-|        |                                  |                                    |             | correctamente"}                    |
+| Método | Ruta                             | Descripción                        | Código HTTP | Ejemplo de respuesta                                |
+| ------ | -------------------------------- | ---------------------------------- | ----------- | --------------------------------------------------- |
+| GET    | /productos                       | Lista todos los productos          | 200         | Array de productos en formato JSON                  |
+| GET    | /productos/codigo/:codigo        | Devuelve un producto por su código | 200         | Objeto JSON del producto                            |
+| GET    | /productos/categoria/:categoria  | Devuelve productos por categoría   | 200         | Array de objetos de los productos en formato JSON   |
+| POST   | /productos                       | Crea un nuevo producto             | 201         | Objeto JSON del producto creado                     |
+| PUT    | /productos/codigo/:codigo        | Actualiza un producto existente    | 200         | Objeto JSON con datos actualizados                  |
+| DELETE | /productos/codigo/:codigo        | Elimina un producto por código     | 200         | `{ "mensaje": "Producto eliminado correctamente" }` |
+
 
 
 ---
 
-### Respuestas con errores
+### ❌ Respuestas con errores
 
-| Método | Ruta                             | Caso de error                        | Código HTTP | Respuesta                                                       |
-| ------ | -------------------------------- | ------------------------------------ | ----------- | --------------------------------------------------------------- |
-| GET    | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{ "error": "El código debe ser un número válido" }`            |
-| GET    | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `{ "message": "Producto no encontrado" }`                       |
-| PUT    | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{ "error": "El código debe ser un número válido" }`            |
-| PUT    | /productos/codigo/:codigo        | Cuerpo vacío                         | 400         | `Error en el formato de datos recibidos.`                       |
-| PUT    | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `Producto no encontrado.`                                       |
-| DELETE | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{"error": "El código debe ser un número válido"}`              |
-| DELETE | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `{ "mensaje": "Producto no encontrado"}`                        |
-| DELETE | /productos/codigo/:codigo        | Fallo en conexión a la base de datos | 500         | `{"error": "error al conectarse a MongoDB"}`                    | 
-| DELETE | /prodcutos/codigo/:codigo        | Error interno del servidor           | 500         | `{"error": "ocurrió un error interno en el servidor"}`          |
-
+| Método | Ruta                             | Caso de error                        | Código HTTP | Respuesta                                                           |
+| ------ | -------------------------------- | ------------------------------------ | ----------- | ------------------------------------------------------------------- |
+| GET    | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{ "error": "El código debe ser un número válido" }`                |
+| GET    | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `{ "message": "Producto no encontrado" }`                           |
+| GET    | /productos/categoria/:categoria  | Categoria no encontrda               | 404         | `{ "message": "No se encontraron categorias con ese nombre."}`      |
+| POST   | /productos                       | Cuerpo vacio                         | 400         | `{ "error": "El formato de datos recibidos esta vacio"}`            |
+| POST   | /productos                       | Campos faltantes                     | 400         | `{ "error": "Se necesitan los campos nombre, precio y categoria"}`  |
+| POST   | /productos                       | Producto ya existe                   | 409         | `{ "mensaje": "El producto ya existe" }`                            |
+| POST   | /productos                       | Fallo en conexión a la base de datos | 500         | `{ "error": "Error al conectarse a MongoDB" }`                      |
+| POST   | /productos                       | Error interno del servidor           | 500         | `{ "error": "Ocurrio un error interno en el servidor" }`            |  
+| PUT    | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{ "error": "El código debe ser un número válido" }`                |
+| PUT    | /productos/codigo/:codigo        | Cuerpo vacío                         | 400         | `Error en el formato de datos recibidos.`                           |
+| PUT    | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `Producto no encontrado.`                                           |
+| DELETE | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{"error": "El código debe ser un número válido"}`                  |
+| DELETE | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `{ "mensaje": "Producto no encontrado"}`                            |
+| DELETE | /productos/codigo/:codigo        | Fallo en conexión a la base de datos | 500         | `{"error": "error al conectarse a MongoDB"}`                        | 
+| DELETE | /prodcutos/codigo/:codigo        | Error interno del servidor           | 500         | `{"error": "ocurrió un error interno en el servidor"}`              |            
 ---
 
