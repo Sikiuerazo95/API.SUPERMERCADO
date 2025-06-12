@@ -469,3 +469,7 @@ Código HTTP: 500
 
 ---
 
+# Integrantes:
+###### 👩‍💻 __Erazo Leon, Yessica Sikiu__
+###### 👩‍💻 __Spañol, María Florencia__
+###### 👩‍💻 __Santamaria, Araceli__
