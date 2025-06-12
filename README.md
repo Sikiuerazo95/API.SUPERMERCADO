@@ -372,6 +372,73 @@ __Código HTTP: 500__
 
 ---
 
+### 🗑️ Eliminar un producto por código
+
+**DELETE** /productos/código/:codigo
+
+__Descripción:__ Elimina un producto del inventario a partir de su código. Este endpoint elimina un documento de la colección si se encuentra coincidencia exacta con el código enviado.
+
+
+#### Ejemplos 
+##### Parámetro requerido: 
+
+:codigo: número entero correspondiente al código del producto que se desea eliminar.
+
+Ejemplo de uso:
+
+__Método:__ DELETE
+
+__URL:__ http://localhost:3008/productos/codigo/1234
+
+
+
+##### Respuesta exitosa: 
+```json
+{
+	"mensaje": "producto eliminado correctamente"
+}
+```
+
+Código HTTP: 200
+
+##### Respuestas erróneas:
+###### Código no numérico:
+URL: http://localhost:3008/productos/codigo/abc
+```json
+{
+	"error": "El código debe ser un número válido"
+}
+
+```
+###### Código HTTP:400
+
+Producto no encontrado:
+URL: http://localhost:3008/productos/codigo/9999
+```json
+{
+	"mensaje": "Producto no encontrado"
+}
+```
+Código HTTP: 404
+
+###### Error al conectarse a la base de datos:
+```json
+{
+	"error": "error al conectarse a MongoDB"
+}
+```
+Código HTTP: 500
+
+###### Error interno del servidor:
+```json
+{
+	"error": "ocurrió un error interno en el servidor"
+}
+```
+Código HTTP: 500
+
+
+
 ## Tabla de resumen de respuestas:
 ### Respuestas exitosas
 
@@ -380,18 +447,25 @@ __Código HTTP: 500__
 | GET    | /productos                       | Lista todos los productos          | 200         | Array de productos JSON            |
 | GET    | /productos/codigo/:codigo        | Devuelve un producto por su código | 200         | Objeto JSON del producto           |
 | PUT    | /productos/codigo/:codigo        | Actualiza un producto existente    | 200         | Objeto JSON con datos actualizados |
+| DELETE | /productos/codigo/:codigo        | Elimina un producto por código     | 200         | { "mensjae": "producto eliminado   |
+|        |                                  |                                    |             | correctamente"}                    |
+
 
 ---
 
 ### Respuestas con errores
 
-| Método | Ruta                             | Caso de error                        | Código HTTP | Respuesta                                                       |
+| Método | Ruta                             | Caso de error                        | Código HTTP Respuesta                                                       |
 | ------ | -------------------------------- | ------------------------------------ | ----------- | --------------------------------------------------------------- |
 | GET    | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{ "error": "El código debe ser un número válido" }`            |
 | GET    | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `{ "message": "Producto no encontrado" }`                       |
 | PUT    | /productos/codigo/:codigo        | Código no numérico                   | 400         | `{ "error": "El código debe ser un número válido" }`            |
 | PUT    | /productos/codigo/:codigo        | Cuerpo vacío                         | 400         | `Error en el formato de datos recibidos.`                       |
 | PUT    | /productos/codigo/:codigo        | Producto no encontrado               | 404         | `Producto no encontrado.`                                       |
+| DELETE | /productos/codigo/:codigo        | Código no numérico                   | 400         |`{"error": "El código debe ser un número válido"}`               |
+| DELETE | /productos/codigo/:codigo        | Producto no encontrado               | 404         |`{ "mensaje": "Producto no encontrado"}`                         |
+| DELETE | /productos/codigo/:codigo        | Fallo en conexión a la base de datos | 500         |`{"error": "error al conectarse a MongoDB"}`                     | 
+| DELETE | /prodcutos/codigo/:codigo        | Error interno del servidor           | 500         |`{"error": "ocurrió un error interno en el servidor"}`           |
 
 ---
 
